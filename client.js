@@ -1,10 +1,20 @@
 
-const comparar = (n,m,str1,str2) =>{
+const compararValor = (n,m,str1,str2) =>{
     let retorno ='';
-    if (n===m){
+    if (n==m){
         retorno = `As variáveis ${str1} e ${str2} tem o mesmo valor, mas tipos diferentes`;
     } else {
         retorno = `As variáveis ${str1} e ${str2} não tem o mesmo valor`;
+    }
+    return retorno;
+}
+
+const compararTipoEValor = (n,m,str1,str2) =>{
+    let retorno ='';
+    if (n===m){
+        retorno = `As variáveis ${str1} e ${str2} tem o mesmo valor e mesmo tipo`;
+    } else {
+        retorno = `As variáveis ${str1} e ${str2} não tem o mesmo tipo`;
     }
     return retorno;
 }
@@ -20,11 +30,11 @@ let stringTrinta = '30';
 let numeroDez = 10;
 let stringDez = '10';
 
-let retorno = comparar(numeroDez,stringDez,'numeroUm','stringUm');
+let retorno = compararValor(numeroDez,stringDez,'numeroUm','stringUm');
 console.log(retorno);
-retorno = comparar(numeroDez,stringDez,'numeroDez','stringDez');
+retorno = compararTipoEValor(numeroDez,stringDez,'numeroTrinta','stringTrinta');
 console.log(retorno);
-retorno = comparar(numeroDez,stringDez,'numeroTrinta','stringTrinta');
+retorno = compararValor(numeroDez,stringDez,'numeroDez','stringDez');
 console.log(retorno);
 
 console.log( '----------------------------' );
