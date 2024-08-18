@@ -1,0 +1,85 @@
+#area {
+  position:relative;
+  left:30%;
+  top:30%;
+}
+
+#area #formulario {
+  position:absolute;
+  display:block;
+}
+
+fieldset {
+    background-color:#A7C0DC;
+    width:500px;
+    height:250px;
+}
+
+legend {
+  font-style:bold;
+  font-family: “Segoe UI”,”Arial”,”Times New Roman”;
+}
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: silver;
+}
+
+legend
+{
+  font-style:bold;
+  font-family: "Segoe UI";
+}
+
+#formulario label
+{
+  position:absolute;
+  left:19px;
+  margin-right:5px;
+}
+
+input.form-control {
+    background-color:#ddd;
+    width:14rem;
+    height: 1.35rem;
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
+}
+
+select.form-control {
+    background-color:#ddd;
+    width: 14rem;
+    height: 1.45rem;
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
+}
+
+.button {
+    margin: 1.5rem 0 0 0;
+    border: black solid 1px;
+    #background-color:#ddd;
+    width: 100%;
+    display: flexbox;
+    text-align: right;
+}
+
+#submit{
+    display: flexbox;
+    width: 8rem;
+    height: 1.8rem;
+    margin: 0.3rem;
+    background-color:blue;
+    color: #fff;
+}
+
+#reset{
+    display: flexbox;
+    width: 8rem;
+    height: 1.8rem;
+    margin: 0.3rem;
+    background-color:#fff;
+}
+
+.header{
+    margin: 3rem 0 0 3rem;
+}
