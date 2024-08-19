@@ -11,17 +11,18 @@
     <div class="header">
         <h4>Sistema de Recrutamento Militar</h4>
     </div>
+    <form name="myForm">
         <fieldset>
                 <legend>Formulário</legend>
                 <div>
                     <label for="fnome">- Qual o sue nome?</label><br>
                     <input class="form-control"type="text" value="" id="fnome" name="fnome">
                 </div>
-                <div id="campo_idade" style="visibility: hidden;">
+                <div>
                     <label for="fidade">- Quantos anos você tem?</label><br>
                     <input class="form-control" type="text" value="" id="fidade" name="fidade">
                 </div>
-                <div id="campo_linguagem" style="visibility: hidden;">
+                <div>
                     <label for="flinguagem">- Qual a linguagem de programação você está estudando?</label><br>
                     <select class="form-control" id="flinguagem" name="flinguagem">
                         <option value=""></option>
@@ -39,45 +40,23 @@
                     <button id="reset" name="reset" type="reset">Cancelar</button>
                 </div>
         </fieldset>
-        &nbsp;<span id="idResposta"></span>
+    </form>
+    Resposta:
+    <span id="idResposta">um</span>
 </div>
 </body>
 </html>
 <script>
+let x = "";
 function validateForm() {
-    let campoIdadeVisible = document.getElementById("campo_idade").style.visibility;
-    let campoLinguagemVisible = document.getElementById("campo_linguagem").style.visibility;
-    let x = document.getElementById("fnome").value;
-    if (campoIdadeVisible === "hidden"){
-        if (x == "") {
-            alert("Informe o campo nome.");
-            return false;
-        } else {
-            document.getElementById("idResposta").innerHTML = `Olá ${x}`;
-        }
-        if (x){
-            document.getElementById("campo_idade").style.visibility="visible";
-        }
-    } else if (campoIdadeVisible === "visible" && campoLinguagemVisible === "hidden"){
-        let y = document.getElementById("fidade").value;
-        if (y == "") {
-            alert("Informe o campo idade.");
-            return false;
-        } else {
-            document.getElementById("idResposta").innerHTML = `Olá ${x}, você tem ${y} anos`;
-        }
-        if (y){
-            document.getElementById("campo_linguagem").style.visibility="visible";
-        }
-    } else if (campoIdadeVisible === "visible" && campoLinguagemVisible === "visible"){
-        let y = document.getElementById("fidade").value;
-        let z = document.getElementById("flinguagem").value;
-        if (z == "") {
-            alert("Informe o campo linguagem.");
-            return false;
-        } else {
-            document.getElementById("idResposta").innerHTML = `Olá ${x}, você tem ${y} anos e já está aprendendo ${z}!`;
-        }
+    x = document.forms["myForm"]["fnome"].value;
+    if (x == "") {
+        alert("Informe o campo nome.");
+        return false;
+    }
+    if (x !== ""){
+       // document.getElementById("idResposta").innerHTML = x;  
+        alert(x);
     }
 }
 </script>
