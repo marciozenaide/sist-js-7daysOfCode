@@ -14,7 +14,7 @@
         <fieldset>
                 <legend>Formulário</legend>
                 <div>
-                    <label for="fnome">- Olá programador, vai seguir qual área?</label><br>
+                    <label for="fnomeArea">- Olá programador, vai seguir qual área?</label><br>
                     <select class="form-control" id="fnomeArea" name="fnomeArea">
                         <option value=""></option>
                         <option value="back-end">Back-End</option>
@@ -22,7 +22,7 @@
                     </select>
                 </div>
                 <div id="campo_back_end" style="visibility: hidden;">
-                    <label for="fidade">- Na área de Back-End, vc quer aprender qual linguagem?</label><br>
+                    <label for="fbackEnd">- Na área de Back-End, vc quer aprender qual linguagem?</label><br>
                     <select class="form-control" id="fbackEnd" name="fbackEnd">
                         <option value=""></option>
                         <option value="c#">C#</option>
@@ -50,12 +50,23 @@
                         <option value="Fullstack">Fullstack</option>
                     </select>
                 </div>
+                <div id="campo_tcnologia" style="visibility: hidden;">
+                    <label for="ftecnologia">- Quais tecnologias?</label><br>
+                    <input class="form-control" type="text" id="ftecnologia" name="fnomeArea">
+                </div>
                 <div class="button">
                     <button id="submit" name="submit" type="submit" onclick="validateForm()">Enviar</button>
                     <button id="reset" name="reset" type="reset">Cancelar</button>
                 </div>
         </fieldset>
         &nbsp;<span id="idResposta"></span>
+        <br>
+        <p>Tecnologias de interesse</p>
+        <table id="myTable">
+            <tr>
+                <td></td>
+            </tr>
+        </table>
 </div>
 </body>
 </html>
@@ -64,6 +75,7 @@ function validateForm() {
     let campoBackEndVisible = document.getElementById("campo_back_end").style.visibility;
     let campoFrontEndVisible = document.getElementById("campo_front_end").style.visibility;
     let campoEspecializacaoVisible = document.getElementById("campo_especializacao").style.visibility;
+    let campoTecnologiaVisible = document.getElementById("campo_tcnologia").style.visibility;
     let x = document.getElementById("fnomeArea").value;
     let areaEscolhida;
     if (campoBackEndVisible === "hidden" && campoFrontEndVisible === "hidden"){
@@ -86,7 +98,7 @@ function validateForm() {
             alert("Informe o campo Back-End.");
             return false;
         } else {
-            document.getElementById("idResposta").innerHTML = `Olá vc vai ser ${x} e aprender ${y}`;
+            document.getElementById("idResposta").innerHTML = `Programador ${x} se especializar em ${y}`;
         }
         if (y){
             document.getElementById("campo_especializacao").style.visibility="visible";
@@ -97,21 +109,40 @@ function validateForm() {
             alert("Informe o campo Front-End.");
             return false;
         } else {
-            document.getElementById("idResposta").innerHTML = `Olá vc vai ser ${x} e aprender ${y}`;
+            document.getElementById("idResposta").innerHTML = `Programador ${x} estudar ${y}`;
         }
         if (y){
             document.getElementById("campo_especializacao").style.visibility="visible";
         }
-    } else if ((campoBackEndVisible === "visible" || campoFrontEndVisible === "visible" ) && campoEspecializacaoVisible === "visible"){
+    } else if ((campoBackEndVisible === "visible" || campoFrontEndVisible === "visible" ) && campoEspecializacaoVisible === "visible" && campoTecnologiaVisible === "hidden"){
         let be = document.getElementById("fbackEnd").value;
         let fe = document.getElementById("ffrontEnd").value;
-        let y = be === ""?be:fe;
+        let y = "";
+        if (be !== ""){
+            y = be;
+        } else {
+            y = fe;
+        }
         let z = document.getElementById("fespecializacao").value;
         if (z == "") {
             alert("Informe o campo especialização.");
             return false;
         } else {
-            document.getElementById("idResposta").innerHTML = `Olá vc vai ser ${x}, e aprender ${y} e se especializar em ${z}!`;
+            document.getElementById("idResposta").innerHTML = `Programador ${x}, estudar ${y} e se especializar em ${z}!`;
+        }
+        if (z){
+            document.getElementById("campo_tcnologia").style.visibility="visible";
+        }
+    } else if (campoEspecializacaoVisible === "visible" && campoTecnologiaVisible === "visible"){
+        let tecnologia = document.getElementById("ftecnologia").value;
+        if (tecnologia == "") {
+            alert("Informe o campo tecnologia.");
+            return false;
+        } else {
+            var table = document.getElementById("myTable");
+            var row = table.insertRow(0);
+            var cell1 = row.insertCell(0);
+            cell1.innerHTML = tecnologia;
         }
     }
 }
