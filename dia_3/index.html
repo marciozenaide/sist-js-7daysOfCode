@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recrutamento Militar</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+<div id="area">
+    <div class="header">
+        <h4>Sistema de Recrutamento</h4>
+    </div>
+        <fieldset>
+                <legend>Formulário</legend>
+                <div>
+                    <label for="fnome">- Olá programador, vai seguir qual área?</label><br>
+                    <select class="form-control" id="fnomeArea" name="fnomeArea">
+                        <option value=""></option>
+                        <option value="back-end">Back-End</option>
+                        <option value="front-end">Front-End</option>
+                    </select>
+                </div>
+                <div id="campo_back_end" style="visibility: hidden;">
+                    <label for="fidade">- Na área de Back-End, vc quer aprender qual linguagem?</label><br>
+                    <select class="form-control" id="fbackEnd" name="fbackEnd">
+                        <option value=""></option>
+                        <option value="c#">C#</option>
+                        <option value="java">Java</option>
+                        <option value="c++">C++</option>
+                        <option value="visualBasic">Visual Basic</option>
+                    </select>
+                </div>
+                <div id="campo_front_end" style="visibility: hidden;">
+                    <label for="ffrontEnd">- Na área de Front-End, vc quer aprender qual linguagem?</label><br>
+                    <select class="form-control" id="ffrontEnd" name="ffrontEnd">
+                        <option value=""></option>
+                        <option value="react">React</option>
+                        <option value="vue">Vue</option>
+                        <option value="angular">Angular</option>
+                        <option value="jsf">JSF</option>
+                        <option value="jsp">JSP</option>
+                    </select>
+                </div>
+                <div id="campo_especializacao" style="visibility: hidden;">
+                    <label for="fespecializacao">- O que você vai seguir (Especialização)?</label><br>
+                    <select class="form-control" id="fespecializacao" name="fespecializacao">
+                        <option value=""></option>
+                        <option value="especializaçaoAreaEscolhida">Especializaçao na área escolhida</option>
+                        <option value="Fullstack">Fullstack</option>
+                    </select>
+                </div>
+                <div class="button">
+                    <button id="submit" name="submit" type="submit" onclick="validateForm()">Enviar</button>
+                    <button id="reset" name="reset" type="reset">Cancelar</button>
+                </div>
+        </fieldset>
+        &nbsp;<span id="idResposta"></span>
+</div>
+</body>
+</html>
+<script>
+function validateForm() {
+    let campoBackEndVisible = document.getElementById("campo_back_end").style.visibility;
+    let campoFrontEndVisible = document.getElementById("campo_front_end").style.visibility;
+    let campoEspecializacaoVisible = document.getElementById("campo_especializacao").style.visibility;
+    let x = document.getElementById("fnomeArea").value;
+    let areaEscolhida;
+    if (campoBackEndVisible === "hidden" && campoFrontEndVisible === "hidden"){
+        if (x == "") {
+            alert("Informe o campo back-end.");
+            return false;
+        } else {
+            document.getElementById("idResposta").innerHTML = `Olá, ${x}`;
+        }
+        if (x){
+            if (x==="back-end"){
+                document.getElementById("campo_back_end").style.visibility="visible";
+            } else {
+                document.getElementById("campo_front_end").style.visibility="visible";
+            }
+        }
+    } else if (campoBackEndVisible === "visible" && campoEspecializacaoVisible === "hidden"){
+        let y = document.getElementById("fbackEnd").value;
+        if (y == "") {
+            alert("Informe o campo Back-End.");
+            return false;
+        } else {
+            document.getElementById("idResposta").innerHTML = `Olá vc vai ser ${x} e aprender ${y}`;
+        }
+        if (y){
+            document.getElementById("campo_especializacao").style.visibility="visible";
+        }
+    } else if (campoFrontEndVisible === "visible" && campoEspecializacaoVisible === "hidden"){
+        let y = document.getElementById("ffrontEnd").value;
+        if (y == "") {
+            alert("Informe o campo Front-End.");
+            return false;
+        } else {
+            document.getElementById("idResposta").innerHTML = `Olá vc vai ser ${x} e aprender ${y}`;
+        }
+        if (y){
+            document.getElementById("campo_especializacao").style.visibility="visible";
+        }
+    } else if ((campoBackEndVisible === "visible" || campoFrontEndVisible === "visible" ) && campoEspecializacaoVisible === "visible"){
+        let be = document.getElementById("fbackEnd").value;
+        let fe = document.getElementById("ffrontEnd").value;
+        let y = be === ""?be:fe;
+        let z = document.getElementById("fespecializacao").value;
+        if (z == "") {
+            alert("Informe o campo especialização.");
+            return false;
+        } else {
+            document.getElementById("idResposta").innerHTML = `Olá vc vai ser ${x}, e aprender ${y} e se especializar em ${z}!`;
+        }
+    }
+}
+</script>
